@@ -1,9 +1,11 @@
+"use client";
+
 import React from "react";
 import Input from "./Input";
 import Button from "./Button";
 import Link from "next/link";
 
-const LoginForm = () => {
+const SignInForm = () => {
   return (
     <div className="flex justify-center items-center h-screen">
       <div className="shadow-lg p-5 rounded-lg bg-white w-[100%] max-w-[300px]">
@@ -27,4 +29,4 @@ const LoginForm = () => {
   );
 };
 
-export default LoginForm;
+export default SignInForm;
