@@ -11,7 +11,9 @@ export async function POST(req: Request) {
 
     const result = await response.json();
     if (response.ok) {
-      return new Response(JSON.stringify(result), { status: 200 });
+      return new Response(JSON.stringify(result.token.accessToken), {
+        status: 200,
+      });
     } else {
       return new Response(JSON.stringify(result), { status: response.status });
     }

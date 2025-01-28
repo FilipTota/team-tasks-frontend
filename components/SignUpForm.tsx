@@ -3,6 +3,8 @@ import React, { useState } from "react";
 import Input from "./Input";
 import Button from "./Button";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import Cookies from "js-cookie";
 
 const SignUpForm = () => {
   const [username, setUsername] = useState("");
@@ -12,11 +14,12 @@ const SignUpForm = () => {
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [error, setError] = useState("");
-  const [success, setSuccess] = useState(false);
+  const router = useRouter();
 
   const handleUsername = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUsername(e.target.value);
-    setUsernameError(""); // reset error when user stars typing
+    // reset error when user stars typing
+    setUsernameError("");
     setError("");
   };
 
@@ -87,9 +90,14 @@ const SignUpForm = () => {
         const result = await response.json();
 
         if (response.ok) {
-          setSuccess(true);
           setError(""); // Reset error
           console.log("Sign up successful:", result);
+
+          // store the JWT in cookies
+          Cookies.set("accessToken", result);
+
+          // redirect to /dashboard
+          router.push("/dashboard");
         } else {
           setError(result.message || "Something went wrong");
         }
