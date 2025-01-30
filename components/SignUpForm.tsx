@@ -72,7 +72,7 @@ const SignUpForm = () => {
     const isFormValid = validateForm();
 
     if (isFormValid) {
-      const data = {
+      const requestBody = {
         username,
         email,
         password,
@@ -84,17 +84,17 @@ const SignUpForm = () => {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(data),
+          body: JSON.stringify(requestBody),
         });
 
         const result = await response.json();
 
         if (response.ok) {
           setError(""); // Reset error
-          console.log("Sign up successful:", result);
 
           // store the JWT in cookies
-          Cookies.set("accessToken", result);
+          Cookies.set("accessToken", result.token.accessToken);
+          Cookies.set("refreshToken", result.token.refreshToken);
 
           // redirect to /dashboard
           router.push("/dashboard");

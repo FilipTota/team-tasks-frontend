@@ -10,7 +10,9 @@
   },
   "dependencies": {
     "@tanstack/react-query": "^5.64.2",
+    "@types/jwt-decode": "^2.2.1",
     "js-cookie": "^3.0.5",
+    "jwt-decode": "^4.0.0",
     "next": "15.1.5",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
